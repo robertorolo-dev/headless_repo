@@ -1,5 +1,7 @@
 import { Cover } from "components/Cover";
 import { Heading } from "components/Heading";
+import { Paragraph } from "components/Paragraph/Paragraph";
+import { theme } from "theme";
 
 
 export const BlockRenderer = ({ blocks }) => {
@@ -9,16 +11,24 @@ export const BlockRenderer = ({ blocks }) => {
 
 
             case "core/heading":{
-                return <Heading
+                return (
+                <Heading
                  key={block.id} level={block.attributes.level} content={block.attributes.content} textAlign={block.attributes.textAlign} />
-            };
+                )
+                };
+
 
             case "core/cover": {
-                console.log("Block", block);
-
                 return <Cover key={block.id} background={block.attributes.url}> 
                 <BlockRenderer blocks ={block.innerBlocks}/>
                 </Cover>
+            };
+
+            case"core/paragraph":{
+                return <Paragraph key={block.id}
+                 textAlign={block.attributes.textAlign}
+                 content ={block.attributes.content}
+                 textColor={theme[block.attributes.textColor] || block.attributes.style?.color?.text}/>
             };
             
             default:

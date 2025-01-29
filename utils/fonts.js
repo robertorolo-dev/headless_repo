@@ -1,4 +1,4 @@
-export const getTextAlign = (textAlign = "right") => {
+export const getTextAlign = (textAlign = "left") => {
     const textAlignMap = {
         "left": "text-left",
         "right": "text-right",
